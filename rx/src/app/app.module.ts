@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CustomButtonComponent } from './custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomButtonComponent
   ],
   imports: [
     BrowserModule,
