@@ -18,9 +18,19 @@ export class ClickableButtonComponent implements OnInit {
       .map(arr => arr.length)
       .filter(len => len===2)
 
+    const trippleClickStream = clickStream
+      .bufferWhen(()=>clickStream.debounceTime(250))
+      .map(arr => arr.length)
+      .filter(len => len === 3)
+
     doubleClickStream.subscribe(c => {
       this.timeString = new Date().toTimeString()
     })
+
+    trippleClickStream.subscribe(c => {
+      this.trippleClick=true
+    })
   }
   timeString: string
+  trippleClick: boolean
 }
