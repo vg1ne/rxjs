@@ -12,6 +12,8 @@ export class CustomChipsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.$chips = Observable.of(this.textStub).delay(5000)
   }
   $chips: Observable<Array<string>>
+  textStub: Array<string> = ['one', 'two', 'three', 'four']
 }
