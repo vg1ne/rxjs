@@ -11,12 +11,14 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import 'hammerjs';
 import { CustomChipsComponent } from './custom-chips/custom-chips.component';
 import {MdChipsModule} from '@angular/material';
+import { ClickableButtonComponent } from './clickable-button/clickable-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomButtonComponent,
-    CustomChipsComponent
+    CustomChipsComponent,
+    ClickableButtonComponent
   ],
   imports: [
     BrowserModule,
