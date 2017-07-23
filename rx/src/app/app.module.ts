@@ -6,15 +6,26 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import 'hammerjs';
+import { CustomChipsComponent } from './custom-chips/custom-chips.component';
+import {MdChipsModule} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    CustomChipsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MdChipsModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
