@@ -12,9 +12,9 @@ export class RxIntervalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const obsTimer = Observable.interval(1000).take(50)
+    const obsTimer = Observable.interval(1000).take(20)
     obsTimer.subscribe((value)=>{
-      this.numbers.push(value)
+      this.numbers.push(this.numbers.length)
     })
   }
   numbers: Array<number> = []
