@@ -16,6 +16,13 @@ export class RxIntervalComponent implements OnInit {
     obsTimer.subscribe((value)=>{
       this.numbers.push(this.numbers.length)
     })
+
+    const streamA = Observable.of(3,4,5,6)
+    const streamB = streamA.map(i => i*3)
+
+    streamB.subscribe(val => console.log(val))
+
+
   }
   numbers: Array<number> = []
 }
