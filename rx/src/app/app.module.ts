@@ -12,13 +12,15 @@ import 'hammerjs';
 import { CustomChipsComponent } from './custom-chips/custom-chips.component';
 import {MdChipsModule} from '@angular/material';
 import { ClickableButtonComponent } from './clickable-button/clickable-button.component';
+import { RxIntervalComponent } from './rx-interval/rx-interval.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomButtonComponent,
     CustomChipsComponent,
-    ClickableButtonComponent
+    ClickableButtonComponent,
+    RxIntervalComponent
   ],
   imports: [
     BrowserModule,
