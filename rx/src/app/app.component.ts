@@ -37,10 +37,13 @@ export class AppComponent {
     //   .subscribe(x=> console.log(x))
     const interval = Observable.interval(500)
     const foo3 = Observable.of(1,2,3,4,5)
-    const combined = Observable.zip(interval, foo3, (x,y)=> y)
-    combined.subscribe(x=>console.log(x))
+    this.$combined = Observable.zip(interval, foo3, (x,y)=> y)
+    this.$combined.subscribe()
+    const $del = interval.delayWhen(x => Observable.interval(x*x * 100).take(1))
+    $del.subscribe(x=>console.log(x))
   }
 
+  private $combined: Observable<number>
   private $number: Observable<number>
   private numbers : Array<number> = [1,2,3,4,5,6,7]
 }
