@@ -11,22 +11,11 @@ export class AutocompleteComponent implements OnInit {
   @ViewChild('inputElement') inputElement: ElementRef
   @ViewChild('inputForFiltering') inputFilterElement: ElementRef
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) {}
 
   ngOnInit() {
-    this.input$ = Observable
-      .fromEvent(this.inputElement.nativeElement, 'input')
-      .map((event:any) =>event.target.value)
-      .distinctUntilChanged()
-      .debounceTime(500)
-
-    this.inputFiltering$ = Observable
-      .fromEvent(this.inputFilterElement.nativeElement, 'input')
-      .map((event:any) => event.target.value)
-      .distinctUntilChanged()
-      .debounceTime(500)
+    this.input$ = this.initInputObservable()
+    this.inputFiltering$ = this.initInputFilteringObservable()
 
     const user = this.input$.flatMap(
       value => this.http.get(this.url + '/' + value)
@@ -38,7 +27,20 @@ export class AutocompleteComponent implements OnInit {
     )
     user.subscribe((x)=> this.user = x)
   }
-
+  initInputObservable(){
+    return Observable
+      .fromEvent(this.inputElement.nativeElement, 'input')
+      .map((event:any) =>event.target.value)
+      .distinctUntilChanged()
+      .debounceTime(500)
+  }
+  initInputFilteringObservable(){
+    return Observable
+      .fromEvent(this.inputFilterElement.nativeElement, 'input')
+      .map((event:any) => event.target.value)
+      .distinctUntilChanged()
+      .debounceTime(500)
+  }
   // private searchUser(term:string){
   //   console.log(term)
   //   return this.http.get(this.url)
