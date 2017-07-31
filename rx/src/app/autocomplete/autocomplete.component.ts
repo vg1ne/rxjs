@@ -40,20 +40,20 @@ export class AutocompleteComponent implements OnInit {
         return this.getUsersFiltered(term)
       })
     user$.subscribe((data)=>{
-      console.log(data)
+      this.users = data
     })
     }
   getUsers(){
     return this.http.get(this.url)
       .map(res=>res.json())
       .concatMap(res=>res)
-      .filter((x:any)=>x.id>30)
   }
   getUsersFiltered(term:string){
     return this.getUsers()
-      .map(users=>users
-        .filter(user=>
-          user.login.indexOf(term)>=0))
+      .filter((user:{login:string})=>{
+        return user.login.indexOf(term)>=0
+      })
+      .toArray()
   }
   initInputObservable() {
     return Observable

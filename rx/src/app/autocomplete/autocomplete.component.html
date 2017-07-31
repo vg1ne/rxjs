@@ -15,7 +15,7 @@
     <input #inputForFiltering>
 
     <section>
-      <app-user *ngFor="let user of users" [user]="user"></app-user>
+      <app-user *ngFor="let user of users"  [user]="user"></app-user>
     </section>
     <app-user [user]="user2" *ngIf="user2"></app-user>
     <!--<app-user [user]="user" *ngIf="user"></app-user>-->
