@@ -45,9 +45,10 @@ export class AutocompleteComponent implements OnInit {
   }
   //TODO: fix repetly calling to api/users
   getUsers() {
-    return this.http.get(this.url)
+    return this.getUsersHttp()
       .map(res => res.json())
       .concatMap(res => res)
+      .share()
   }
 
   getUsersFiltered(term: string) {
@@ -56,6 +57,10 @@ export class AutocompleteComponent implements OnInit {
         return user.login.indexOf(term) >= 0
       })
       .toArray()
+  }
+
+  getUsersHttp(){
+    return this.http.get(this.url).share()
   }
 
   initInputObservable() {
