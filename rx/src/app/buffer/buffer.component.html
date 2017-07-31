@@ -1,0 +1,10 @@
+<p>
+  Collect all values emitted by our interval observable until we click button. <br>
+  This will cause the bufferBy Observable to emit a value, satisfying the buffer. <br>
+  Pass us all collected values since last buffer as an array.
+</p>
+<button id="buffer">click me</button>
+<hr>
+<h3>Values:</h3>
+<b>interval values:</b> <span>{{intervalValue$|async}}</span> <br>
+<b>buffer values: (changes on btn click)</b> <span>{{bufferValue$|async}}</span>

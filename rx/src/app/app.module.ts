@@ -13,6 +13,7 @@ import { CustomChipsComponent } from './custom-chips/custom-chips.component';
 import {MdChipsModule} from '@angular/material';
 import { ClickableButtonComponent } from './clickable-button/clickable-button.component';
 import { RxIntervalComponent } from './rx-interval/rx-interval.component';
+import { BufferComponent } from './buffer/buffer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RxIntervalComponent } from './rx-interval/rx-interval.component';
     CustomButtonComponent,
     CustomChipsComponent,
     ClickableButtonComponent,
-    RxIntervalComponent
+    RxIntervalComponent,
+    BufferComponent
   ],
   imports: [
     BrowserModule,
