@@ -36,25 +36,28 @@ export class AutocompleteComponent implements OnInit {
     //     this.user2=val.json()
     //   })
     const user$ = this.inputFiltering$
-      .mergeMap((term)=>{
+      .mergeMap((term) => {
         return this.getUsersFiltered(term)
       })
-    user$.subscribe((data)=>{
+    user$.subscribe((data) => {
       this.users = data
     })
-    }
-  getUsers(){
-    return this.http.get(this.url)
-      .map(res=>res.json())
-      .concatMap(res=>res)
   }
-  getUsersFiltered(term:string){
+  //TODO: fix repetly calling to api/users
+  getUsers() {
+    return this.http.get(this.url)
+      .map(res => res.json())
+      .concatMap(res => res)
+  }
+
+  getUsersFiltered(term: string) {
     return this.getUsers()
-      .filter((user:{login:string})=>{
-        return user.login.indexOf(term)>=0
+      .filter((user: { login: string }) => {
+        return user.login.indexOf(term) >= 0
       })
       .toArray()
   }
+
   initInputObservable() {
     return Observable
       .fromEvent(this.inputElement.nativeElement, 'input')
