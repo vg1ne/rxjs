@@ -1,6 +1,3 @@
 <button (click)="clicked(event)" md-raised-button>
-  <span *ngFor="let item of $spans | async">
-    {{item}}
-  </span>
-  <span class="another">{{$anotherText | async}}</span>
+  <span *ngIf="$anotherText" class="another">{{$anotherText | async}}</span>
 </button>

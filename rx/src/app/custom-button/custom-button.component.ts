@@ -23,8 +23,6 @@ export class CustomButtonComponent implements OnInit {
   }
 
   arrayStub: Array<string> = ['text 1', 'text 2', 'the last text']
-  buttonText: string = 'some text'
   buttonsText: Array<string>
-  $spans: Observable<Array<string>>
   $anotherText: Observable<string>
 }
