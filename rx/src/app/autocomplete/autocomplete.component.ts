@@ -28,28 +28,33 @@ export class AutocompleteComponent implements OnInit {
     )
     user.subscribe((x) => this.user = x)
 
+    // const user$ = this.inputFiltering$
+    //   .mergeMap((term) => {
+    //     return this.http.get(`${this.url}/${term}`)
+    //   })
+    //   .subscribe((val) => {
+    //     this.user2=val.json()
+    //   })
     const user$ = this.inputFiltering$
-      .mergeMap((term) => {
-        return this.http.get(`${this.url}/${term}`)
+      .mergeMap((term)=>{
+        return this.getUsersFiltered(term)
       })
-      .subscribe((val) => {
-        this.user2=val.json()
-      })
-
-    const users = this.inputFiltering$
-      .mergeMap((term) => {
-        return this.http.get(this.url)
-      })
-
-    //   const usersFiltered = users.mapTo((val)=>val.json())
-    // usersFiltered.subscribe((x) => {
-    //   console.log(x)
-    // })
+    user$.subscribe((data)=>{
+      console.log(data)
+    })
     }
-
-
-    // const usersFiltered = users.mergeMap()
-
+  getUsers(){
+    return this.http.get(this.url)
+      .map(res=>res.json())
+      .concatMap(res=>res)
+      .filter((x:any)=>x.id>30)
+  }
+  getUsersFiltered(term:string){
+    return this.getUsers()
+      .map(users=>users
+        .filter(user=>
+          user.login.indexOf(term)>=0))
+  }
   initInputObservable() {
     return Observable
       .fromEvent(this.inputElement.nativeElement, 'input')
