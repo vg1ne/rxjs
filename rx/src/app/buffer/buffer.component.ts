@@ -17,7 +17,7 @@ export class BufferComponent implements OnInit {
     this.bufferValue$ = this.intervalValue$.buffer(buffer$)
 
     this.bufferValue$.subscribe(
-      x => console.log(x),
+      x => console.log(' '+x),
       e => console.log(e),
       () => console.log('completed'))
 
