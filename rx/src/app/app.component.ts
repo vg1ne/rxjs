@@ -40,7 +40,7 @@ export class AppComponent {
     this.$combined = Observable.zip(interval, foo3, (x,y)=> y)
     this.$combined.subscribe()
     const $del = interval.delayWhen(x => Observable.interval(x*x * 100).take(1))
-    $del.subscribe(x=>console.log(x))
+    //$del.subscribe(x=>console.log(x))
   }
 
   private $combined: Observable<number>

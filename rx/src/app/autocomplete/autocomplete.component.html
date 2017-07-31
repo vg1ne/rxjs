@@ -1,0 +1,22 @@
+<p>
+  autocomplete works!
+</p>
+
+<section class="flex">
+  <div class="half">
+    <label>Search one user:</label>
+    <input #inputElement>
+    <hr>
+    <app-user [user]="user" *ngIf="user"></app-user>
+  </div>
+
+  <div class="half">
+    <label>Filter users:</label>
+    <input #inputForFiltering>
+
+    <!--<section>-->
+      <!--<app-user *ngFor="let user of list$" [user]="user"></app-user>-->
+    <!--</section>-->
+    <!--<app-user [user]="user" *ngIf="user"></app-user>-->
+  </div>
+</section>

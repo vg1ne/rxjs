@@ -16,6 +16,8 @@ import { RxIntervalComponent } from './rx-interval/rx-interval.component';
 import { BufferComponent } from './buffer/buffer.component';
 import { BufferCountComponent } from './buffer-count/buffer-count.component';
 import { BufferTimeComponent } from './buffer-time/buffer-time.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BufferTimeComponent } from './buffer-time/buffer-time.component';
     RxIntervalComponent,
     BufferComponent,
     BufferCountComponent,
-    BufferTimeComponent
+    BufferTimeComponent,
+    AutocompleteComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
