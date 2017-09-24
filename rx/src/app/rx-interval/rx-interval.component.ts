@@ -12,24 +12,38 @@ export class RxIntervalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const obsTimer = Observable.interval(1000).take(20)
-    obsTimer.subscribe((value)=>{
-      this.numbers.push(this.numbers.length)
-    })
+    console.clear()
+    const startButton = document.querySelector('#start')
+    const stopButton = document.querySelector('#stop')
+    const resetButton = document.querySelector('#reset')
 
-    const fakeNumberArray = [1,2,3,4,5,6,7,8,9];
+    const stopButtonClick$ = Observable
+      .fromEvent(stopButton, 'click')
+    const startButtonClick$ = Observable
+      .fromEvent(startButton, 'click')
+    const resetButtonClick$ = Observable
+      .fromEvent(resetButton, 'click')
 
-    const streamA = Observable.of(3,4,5,6)
-    const streamB = streamA.map(i => i*3)
-    this.streamC = Observable.interval(2000)
-      .take(fakeNumberArray.length)
-      .map(i=>fakeNumberArray[i])
+    const interval$ = Observable
+      .interval(1000)
+    const intervalThatStops$ = interval$
+      .takeUntil(stopButtonClick$)
 
+    const data = {count:0};
+    const inc = (acc)=> ({count: acc.count + 1});
+    const reset = (acc)=> data;
 
-    streamB.subscribe(val => console.log(val))
+    const incOrReset$ = Observable.merge(
+      intervalThatStops$.mapTo(inc),
+      resetButtonClick$.mapTo(reset)
+    );
 
+    startButtonClick$
+      .switchMapTo(incOrReset$)
+      .startWith(data)
+      .scan((acc, curr) => curr(acc))
+      .subscribe((x)=> console.log(x));
 
+// document.body.insertAdjacentHTML('beforeend', `<div>${x}</div>`)
   }
-  numbers: Array<number> = []
-  streamC: Observable<number>
 }
